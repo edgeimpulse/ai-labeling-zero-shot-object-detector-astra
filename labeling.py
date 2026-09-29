@@ -346,8 +346,11 @@ def main():
             data_ids = json.load(f)
     except (OSError, ValueError) as error:
         raise RuntimeError(f"Failed to load data IDs from {args.data_ids_file}: {error}") from error
+    # The ids.json spec is {"ids": [...]}; a bare array is also accepted.
+    if isinstance(data_ids, dict):
+        data_ids = data_ids.get("ids")
     if not isinstance(data_ids, list) or not all(isinstance(i, int) for i in data_ids):
-        raise RuntimeError("--data-ids-file must contain a JSON array of integer sample IDs")
+        raise RuntimeError('--data-ids-file must contain {"ids": [...]} or a JSON array of integer sample IDs')
 
     project_id = get_project_id(api_endpoint, ei_api_key)
     headers = {"x-api-key": ei_api_key, "Accept": "*/*"}

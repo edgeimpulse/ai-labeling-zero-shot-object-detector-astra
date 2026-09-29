@@ -47,7 +47,7 @@ AI labeling blocks don't work with `edge-impulse-blocks runner`, so build and ru
 1. Create `ids.json` with the sample IDs to label. Find an ID with the expand button on **Data acquisition**:
 
    ```json
-   [1299267659, 1299267609, 1299267606]
+   {"ids": [1299267659, 1299267609, 1299267606]}
    ```
 
 2. Set `OPENAI_API_KEY` and `EI_PROJECT_API_KEY` in your shell. `-e NAME` with no value passes each key through without writing it into the command.

@@ -27,7 +27,7 @@ For each model/provider implementation:
 2. Parse every parameter in `labeling.py` with the same `param` name as its command-line flag.
 3. Use the existing `OPENAI_API_KEY` `secret` parameter for the OpenAI credential. Use a `secret` parameter for a new per-job credential, or `info.requiredEnvVariables` for a block-level value supplied during `edge-impulse-blocks push`.
 4. Read `EI_PROJECT_API_KEY`, `EI_API_ENDPOINT`, and `EI_PROJECT_ID` from the environment. Never hard-code an Edge Impulse API key or provider secret.
-5. Parse `--data-ids-file` and `--propose-actions`. When `--propose-actions <job-id>` is passed, stage changes through `POST /api/{projectId}/raw-data/{sampleId}/propose-changes` and never write bounding boxes or metadata directly.
+5. Parse `--data-ids-file` (the `ids.json` format is `{"ids": [...]}`; also accept a bare array) and `--propose-actions`. When `--propose-actions <job-id>` is passed, stage changes through `POST /api/{projectId}/raw-data/{sampleId}/propose-changes` and never write bounding boxes or metadata directly.
 6. Emit Edge Impulse bounding boxes as `{label, x, y, width, height}` in original-image pixels. Keep the `delete_existing_bounding_boxes`, object size filters, and NMS behavior.
 7. Record the provider model, generation settings, and prompt in sample metadata. Metadata values must be strings.
 8. Fail clearly on invalid parameters, missing environment variables, unreadable images, provider errors, refusals, incomplete responses, and unsuccessful Studio API responses. Exit non-zero if any sample fails.
