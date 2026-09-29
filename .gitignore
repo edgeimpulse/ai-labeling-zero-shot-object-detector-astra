@@ -1,0 +1,14 @@
+# Edge Impulse block state and credentials
+.ei-block-config
+.env
+.env.*
+!.env.example
+
+# Python, sample IDs, and generated output
+__pycache__/
+*.py[cod]
+.venv/
+ids.json
+data-ids.json
+output/
+.DS_Store

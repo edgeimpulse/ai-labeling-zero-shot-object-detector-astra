@@ -1,0 +1,114 @@
+{
+    "version": 1,
+    "type": "ai-action",
+    "info": {
+        "name": "Bounding box labeling with GPT-6 Astra",
+        "description": "Zero-shot object detector that labels objects with bounding boxes using GPT-6 Astra. To detect more complex objects you can combine this block with other labeling blocks.",
+        "operatesOn": [
+            "images_object_detection"
+        ]
+    },
+    "parameters": [
+        {
+            "name": "OpenAI API Key",
+            "value": "",
+            "type": "secret",
+            "help": "An OpenAI API key with access to GPT-6 Astra.",
+            "param": "OPENAI_API_KEY"
+        },
+        {
+            "name": "Prompt",
+            "value": "Person (person)\nCar (vehicle)",
+            "type": "string",
+            "help": "Objects to label, one per line. Put the label in parentheses, e.g. 'A person (person)'. Without parentheses the line is used as the label.",
+            "param": "prompt",
+            "multiline": true,
+            "placeholder": "Objects to label, one per line. Put the label in parentheses.",
+            "hint": "Separate multiple objects with a newline. You can specify the label in the parenthesis (e.g. 'A person (person)')."
+        },
+        {
+            "name": "Reasoning effort",
+            "value": "medium",
+            "type": "select",
+            "help": "GPT-6 Astra reasoning effort. Higher effort can improve box placement but costs more and takes longer.",
+            "param": "reasoning-effort",
+            "valid": [
+                {
+                    "label": "Low",
+                    "value": "low"
+                },
+                {
+                    "label": "Medium",
+                    "value": "medium"
+                },
+                {
+                    "label": "High",
+                    "value": "high"
+                },
+                {
+                    "label": "Extra high",
+                    "value": "xhigh"
+                },
+                {
+                    "label": "Max",
+                    "value": "max"
+                }
+            ]
+        },
+        {
+            "name": "Delete existing bounding boxes",
+            "value": "yes",
+            "type": "select",
+            "valid": [
+                {
+                    "label": "No",
+                    "value": "no"
+                },
+                {
+                    "label": "Only if it matches the label",
+                    "value": "matching-prompt"
+                },
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                }
+            ],
+            "param": "delete_existing_bounding_boxes"
+        },
+        {
+            "name": "Ignore objects smaller than (%)",
+            "optional": true,
+            "value": 0,
+            "type": "float",
+            "param": "ignore-objects-smaller-than",
+            "help": "Any objects where the area is smaller than X% of the whole image will be ignored"
+        },
+        {
+            "name": "Ignore objects larger than (%)",
+            "optional": true,
+            "value": 100,
+            "type": "float",
+            "param": "ignore-objects-larger-than",
+            "help": "Any objects where the area is larger than X% of the whole image will be ignored"
+        },
+        {
+            "name": "Non-max suppression",
+            "help": "Deduplicate boxes via non-max suppression (NMS)",
+            "value": "true",
+            "type": "flag",
+            "param": "nms"
+        },
+        {
+            "name": "NMS IoU threshold",
+            "help": "Threshold for non-max suppression",
+            "value": "0.2",
+            "type": "float",
+            "param": "nms-iou-threshold",
+            "showIf": {
+                "parameter": "nms",
+                "operator": "eq",
+                "value": "true"
+            }
+        }
+    ]
+}

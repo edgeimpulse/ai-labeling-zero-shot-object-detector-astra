@@ -1,0 +1,8 @@
+.ei-block-config
+.env
+.env.*
+.git/
+.github/
+.venv/
+__pycache__/
+output/
