@@ -4,6 +4,9 @@ An Edge Impulse AI labeling block that adds bounding boxes to image data using G
 
 Custom AI labeling blocks require the Edge Impulse Enterprise plan.
 
+<img width="1804" height="910" alt="image" src="https://github.com/user-attachments/assets/202a1a2a-9b7d-475b-bff4-aff5e7d26c3a" />
+
+
 [labeling.py](labeling.py) sends each image to the OpenAI Responses API with `gpt-6-astra`, `"detail": "original"`, and a strict JSON schema, so every response is a list of labeled pixel boxes. Images that exceed OpenAI's 30,000-patch limit are downsized before sending and the boxes are mapped back to the original size.
 
 OpenAI notes that vision models can struggle with precise spatial localization. Use **Label preview data** in Studio to check boxes before applying them to a full dataset.
