@@ -1,5 +1,8 @@
 # AI Labeling Block: Zero-shot Object Detection with GPT-6 Astra
 
+<img width="128" height="128" alt="image" src="https://github.com/user-attachments/assets/56aec790-4110-4472-aa6d-0d923ed12024" />
+
+
 An Edge Impulse AI labeling block that adds bounding boxes to image data using GPT-6 Astra. Describe the objects you want in plain text and the block labels every matching instance. In Studio it appears as **Bounding box labeling with GPT-6 Astra**.
 
 Custom AI labeling blocks require the Edge Impulse Enterprise plan.
